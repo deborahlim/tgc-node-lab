@@ -1,0 +1,50 @@
+{{#extends "base"}}
+
+  {{#block "content"}}
+
+    <h1>Animals</h1>
+    <a class="btn btn-primary" href="/animals_record/create">Create</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Type</th>
+          <th>Gender</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each animalsRecords}}
+          <tr>
+            <td>
+              {{this.name}}
+            </td>
+            <td>
+              {{this.age}}
+            </td>
+            <td> {{this.type}}</td>
+            <td>
+              {{this.gender}}</td>
+            <td>
+              {{this.notes}}
+            </td>
+
+            <td>
+              <a
+                class="btn btn-primary"
+                href="/animals_record/{{this._id}}/update"
+              >Edit</a>
+              <a
+                class="btn btn-primary"
+                href="/animals_record/{{this._id}}/delete"
+              >Delete</a>
+
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/block}}
+
+{{/extends}}

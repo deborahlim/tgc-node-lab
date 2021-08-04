@@ -1,0 +1,43 @@
+{{#extends "base"}}
+
+  {{#block "content"}}
+    <form method="POST">
+      <div>
+        <label class="form-label my-3">Name:</label>
+        <input type="text" name="name" class="form-control" />
+      </div>
+      <div>
+        <label class="form-label my-3">Age:</label>
+        <input type="text" name="age" class="form-control" />
+      </div>
+      <div>
+        <label for="type" class="form-label my-3">Type:</label>
+        <select name="type" id="type" class="form-control">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="rabbit">Rabbit</option>
+        </select>
+      </div>
+      <div>
+        <label class="my-3" for="">Gender:</label>
+        <div class="mx-3">
+          <input class="ml-3" type="radio" name="gender" value="male" />
+          <label class="form-label">Male</label>
+        </div>
+
+        <div class="mx-3">
+          <input type="radio" name="gender" value="female" />
+          <label class="form-label">Female</label>
+        </div>
+
+      </div>
+      <div>
+        <label class="form-label my-3">Notes:</label>
+        <input type="text" name="notes" class="form-control" />
+      </div>
+      <input type="submit" value="Add Animal" class="btn btn-primary my-3" />
+    </form>
+  {{/block}}
+
+{{/extends}}

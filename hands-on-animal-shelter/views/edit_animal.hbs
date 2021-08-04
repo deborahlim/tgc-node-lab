@@ -1,0 +1,55 @@
+{{#extends "base"}}
+
+  {{#block "content"}}
+    <form method="POST">
+      <div>
+        <label class="form-label my-3">Name:</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          value="{{animalRecord.name}}"
+        />
+      </div>
+      <div>
+        <label class="form-label my-3">Age:</label>
+        <input
+          type="text"
+          name="age"
+          class="form-control"
+          value="{{animalRecord.age}}"
+        />
+      </div>
+      <div>
+        <label for="type" class="form-label my-3">Type:</label>
+        <select name="type" id="type" class="form-control">
+          <option value="dog" {{#eq animalRecord.type 'dog'}}selected{{/eq}}>Dog</option>
+          <option value="cat" {{#eq animalRecord.type 'cat'}}selected{{/eq}}>Cat</option>
+          <option value="hamster" {{#eq animalRecord.type 'hamster'}}selected{{/eq}}>Hamster</option>
+          <option value="rabbit" {{#eq animalRecord.type 'rabbit'}}selected{{/eq}}>Rabbit</option>
+        </select>
+      </div>
+      <div>
+        <label class="my-3" for="">Gender:</label>
+        <div class="mx-3">
+          <input class="ml-3" type="radio" name="gender" value="male" {{#eq animalRecord.gender 'male'}}checked{{/eq}}/>
+          <label class="form-label">Male</label>
+        </div>
+
+        <div class="mx-3">
+          <input type="radio" name="gender" value="female" {{#eq animalRecord.gender "female"}}checked{{/eq}} />
+          <label class="form-label">Female</label>
+        </div>
+
+      </div>
+      <div>
+        <label class="form-label my-3">Notes:</label>
+        <input type="text" name="notes" class="form-control" value= '{{animalRecord.notes}}'/>
+      </div>
+      <input type="submit" value="Update Animal" class="btn btn-primary my-3" />
+    </form>
+  {{/block}}
+
+{{/extends}}
+
+{{!-- {{#contains animalRecord.gender "==" "male"}}checked{{/contains}} --}}
