@@ -1,0 +1,33 @@
+{{#extends "base"}}
+
+  {{#block "content"}}
+    <h1>Pets</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each pets}}
+          <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.category.name}}</td>
+            <td>
+              <a
+                href="/pets/{{this.id}}/update"
+                class="btn btn-success btn-sm"
+              >Edit</a>
+              <a href="/pets/{{this.id}}/delete" class="btn">Delete</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/block}}
+
+{{/extends}}

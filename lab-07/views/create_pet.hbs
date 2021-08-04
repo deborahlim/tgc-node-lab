@@ -1,0 +1,36 @@
+{{#extends "base"}}
+
+  {{#block "content"}}
+    <form method="POST">
+      <div class="">
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" />
+      </div>
+      <div class="">
+        <label for="" class="form-label">Category</label>
+        <input type="text" class="form-control" name="category" />
+      </div>
+
+      <div class="">
+        <label for="" class="form-label">Status</label>
+        <input
+          type="radio"
+          class="form-control"
+          name="status"
+          value="available"
+        /><label for="">Available</label>
+        <input
+          type="radio"
+          class="form-control"
+          name="status"
+          value="pending"
+        /><label for="">Pending</label>
+        <input type="radio" class="form-control" name="sold" /><label
+          for=""
+        >Sold</label>
+      </div>
+      <input type="submit" value="Add New Pet" />
+    </form>
+  {{/block}}
+
+{{/extends}}

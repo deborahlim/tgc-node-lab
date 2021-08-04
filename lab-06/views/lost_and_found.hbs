@@ -1,0 +1,46 @@
+{{#extends "base"}}
+
+  {{#block "content"}}
+    <form method="POST">
+      <div class="">
+        <label for="" class="form-label">Item Name</label>
+        <input type="text" class="form-control" name="itemname" />
+        <br />
+        <label for="" class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" />
+        <br />
+        <label for="" class="form-label">Select at least one of the following
+          mode of transport:</label>
+        <br />
+        <input type="radio" value="taxi" name="mode" /><label
+          for=""
+        >Taxi</label>
+        <input type="radio" value="bus" name="mode" /><label for="">Bus</label>
+        <input type="radio" value="MRT" name="mode" /><label for="">MRT</label>
+        <br />
+        <label for="" class="form-label">Select 1-3 of the following:</label>
+        <br />
+        <input type="checkbox" name="description" value="bulky" /><label
+          for=""
+        >Bulky</label>
+        <input type="checkbox" name="description" value="expensive" /><label
+          for=""
+        >Expensive</label>
+        <input type="checkbox" name="description" value="colourful" /><label
+          for=""
+        >Colorful</label>
+        <input type="checkbox" name="description" value="branded" /><label
+          for=""
+        >Branded</label>
+        <input type="checkbox" name="description" value="small" /><label
+          for=""
+        >Small</label>
+        <input type="checkbox" name="description" value="plain" /><label
+          for=""
+        >Plain</label>
+      </div>
+      <input type="submit" class="btn btn-primary" />
+    </form>
+  {{/block}}
+
+{{/extends}}
