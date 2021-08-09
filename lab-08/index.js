@@ -141,7 +141,108 @@ async function main() {
         res.redirect('/food_record')
     })
 
+    
+       // ADD NOTE TO A FOOD RECORD
+       app.get('/food_record/:id/notes/add', async function(req,res){
+        let db = MongoUtil.getDB();
+        let foodRecord = await db.collection('food').findOne({
+            '_id': ObjectId(req.params.id)
+        })
+
+        res.render('add_note',{
+            'food': foodRecord
+        })
+    })
+
+    app.post('/food_record/:id/notes/add', async function(req,res){
+        let db = MongoUtil.getDB();
+        let noteContent = req.body.content;
+
+        // extract out the id of the document which
+        // we are modifying
+        let id = req.params.id;
+        let response = await db.collection('food').updateOne({
+            '_id':ObjectId(id)
+        },{
+            '$push': {
+                'notes': {
+                    "_id": ObjectId(),
+                    "content": noteContent
+                }
+            }
+        })
+        res.redirect('/food_record')
+
+    })
+
+    app.get('/food_record/:id', async function(req,res){
+        let db = MongoUtil.getDB();
+        let foodRecord = await db.collection('food').findOne({
+            '_id':ObjectId(req.params.id)
+        });
+        res.render('food_details', {
+            'food': foodRecord
+        })
+    })
+
+    app.get('/notes/:noteid/update', async function(req,res){
+        let db = MongoUtil.getDB();
+        let results = await db.collection('food').findOne({
+            'notes._id':ObjectId(req.params.noteid)
+        }, {
+            'projection': {
+                'notes': {
+                    '$elemMatch':{
+                        '_id': ObjectId(req.params.noteid)
+                    }
+                }
+            }
+        })
+        
+        let wantedNote = results.notes[0];
+        res.render('edit_note',{
+            'note': wantedNote
+        })
+    })
+
+    app.post('/notes/:noteid/update', async function(req, res) {
+        let db = MongoUtil.getDB();
+        let foodRecord = await db.collection('food').findOne({
+            'notes._id' : ObjectId(req.params.noteid)
+                })
+                await db.collection('food').updateOne({
+                    'notes._id' : ObjectId(req.params.noteid)
+                }, {
+                    '$set': {
+                        'notes.$.content': req.body.content
+                    }
+                })
+                res.redirect('/food_record/'+foodRecord._id)
+    })
+
+    app.get('/notes/:noteid/delete', async(req,res) => {
+        let db = MongoUtil.getDB();
+        let foodRecord = await db.collection('food').findOne({
+            'notes._id' : ObjectId(req.params.noteid)
+        });
+
+        await db.collection('food').updateOne({
+            '_id': ObjectId(foodRecord._id)
+        }, {
+            '$pull' : {
+                'notes': {
+                    '_id': ObjectId(req.params.noteid)
+                }
+            }
+        })
+        res.redirect('/food_record/'+ foodRecord._id)
+    
+    })
+
+    
+    
 }
+
 
 main();
 
